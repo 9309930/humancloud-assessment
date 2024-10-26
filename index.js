@@ -3,7 +3,7 @@ function sumNumbersInString (str) {
     
         if (str.trim() === "") return 0; 
       
-        const cleanedStr = str.replace(/[\/,;*\\n//n]+/g, "");
+        const cleanedStr = str.replace(/[\/,;*\\]+/g, "");
       
         const numbers = cleanedStr.split(/[^-0-9]/).filter(Boolean);
       
@@ -35,7 +35,7 @@ function sumNumbersInString (str) {
         console.log(sumNumbersInString("1,5"));
         console.log(sumNumbersInString("")); 
         console.log(sumNumbersInString("10//2,3\\,4*1001"));
-        console.log(sumNumbersInString("1\n,2,3,5"));
+        console.log(sumNumbersInString("1,2,3,5"));
         console.log(sumNumbersInString("1//n;,-2,3\\5"));
     
       } catch (error) {
