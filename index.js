@@ -3,7 +3,7 @@ function sumNumbersInString (str) {
     
         if (str.trim() === "") return 0; 
       
-        const cleanedStr = str.replace(/[\/,;*\\]+/g, "");
+        const cleanedStr = str.replace(/[\/,;*\\n//n]+/g, "");
       
         const numbers = cleanedStr.split(/[^-0-9]/).filter(Boolean);
       
@@ -21,17 +21,21 @@ function sumNumbersInString (str) {
           }
         });
       
+        if (negatives.length > 0) {
+          throw new Error(`Negative numbers are not allowed: ${negatives.join(", ")}`);
+        }
+
         const numbersArray = sum.toString().split('');
-        result = numbersArray.reduce((acc, val) => acc + parseInt(val), 0);
-        // console.log(result)
+        result = numbersArray && numbersArray?.reduce((acc, val) => acc + parseInt(val), 0);
         return result;
       }
       
-      
+
       try {
         console.log(sumNumbersInString("1,5"));
         console.log(sumNumbersInString("")); 
         console.log(sumNumbersInString("10//2,3\\,4*1001"));
+        console.log(sumNumbersInString("1\n,2,3,5"));
         console.log(sumNumbersInString("1//n;,-2,3\\5"));
     
       } catch (error) {
