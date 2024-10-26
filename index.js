@@ -7,29 +7,32 @@ function sumNumbersInString (str) {
       
         const numbers = cleanedStr.split(/[^-0-9]/).filter(Boolean);
       
-        const sum = [];
+        let sum = 0;
         const negatives = []; 
+        let result;
       
         numbers.forEach(numStr => {
           const num = parseInt(numStr, 10);
-          console.log(num);
-      
           if (num < 0) {
             negatives.push(num); 
           } else if (num <= 1000) {
-            sum.push(num)
+            sum += num;
+
           }
         });
       
-      
-        return sum;
+        const numbersArray = sum.toString().split('');
+        result = numbersArray.reduce((acc, val) => acc + parseInt(val), 0);
+        // console.log(result)
+        return result;
       }
       
+      
       try {
-        (sumNumbersInString("1,5"));
-        (sumNumbersInString("")); 
-        (sumNumbersInString("10//2,3\\,4*1001"));
-        (sumNumbersInString("1//n;,-2,3\\5"));
+        console.log(sumNumbersInString("1,5"));
+        console.log(sumNumbersInString("")); 
+        console.log(sumNumbersInString("10//2,3\\,4*1001"));
+        console.log(sumNumbersInString("1//n;,-2,3\\5"));
     
       } catch (error) {
         console.error(error.message);
